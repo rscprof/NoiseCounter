@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Счётчик шума</string>
+    <string name="create_group_button_title">Зарегистрировать группу</string>
+    <string name="dialog_create_group_title">Регистрация группы</string>
+    <string name="dialog_create_group_message">Укажите название группы</string>
+    <string name="dialog_create_group_ok">Зарегистрировать</string>
+    <string name="dialog_create_group_cancel">Отказаться</string>
+    <string name="noise_fixation_start_button_title">Пуск</string>
+    <string name="noise_fixation_stop_button_title">Стоп</string>
+</resources>
