@@ -1,9 +1,6 @@
-package ru.rsc_team.noisecounter.model;
+package ru.rsc_team.noiseCounter.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by rscprof on 14.10.15.

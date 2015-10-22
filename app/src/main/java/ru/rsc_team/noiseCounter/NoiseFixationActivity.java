@@ -1,30 +1,21 @@
-package ru.rsc_team.noisecounter;
+package ru.rsc_team.noiseCounter;
 
 import android.content.Intent;
 import android.media.AudioFormat;
-import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.speech.tts.TextToSpeech;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.HashMap;
 import java.util.Locale;
 
-import ru.rsc_team.noisecounter.model.Group;
-import ru.rsc_team.noisecounter.model.GroupTickListener;
-import ru.rsc_team.noisecounter.model.Options;
+import ru.rsc_team.noiseCounter.model.Group;
+import ru.rsc_team.noiseCounter.model.GroupTickListener;
+import ru.rsc_team.noiseCounter.model.Options;
 
 //TODO onPause
 public class NoiseFixationActivity extends AppCompatActivity {
@@ -78,7 +69,7 @@ public class NoiseFixationActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.name_group)).setText(group.getName());
         textViewCounter=(TextView)findViewById(R.id.counter);
         textViewCounter.setText((new Integer(group.getCount())).toString());
-        ((Button)findViewById(R.id.start_button)).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.start_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO only one thread
@@ -97,14 +88,13 @@ public class NoiseFixationActivity extends AppCompatActivity {
                         while (!Thread.interrupted()) {
                             int count = recorder.read(b, 0, bufferSize);
                             for (int i = 0; i < count; i++) {
-                                if (b[i]>options.border) sum++;
+                                if (b[i] > options.border) sum++;
                                 //sum += (float) b[i];
                                 len++;
                                 if (len == SamplingFrequency * options.length) {
 
 
-
-                                    if (sum > SamplingFrequency*options.length*options.gate/100) {
+                                    if (sum > SamplingFrequency * options.length * options.gate / 100) {
                                         //TODO send message
                                         NoiseFixationActivity.this.runOnUiThread(new Runnable() {
                                             @Override
@@ -113,7 +103,7 @@ public class NoiseFixationActivity extends AppCompatActivity {
                                             }
                                         });
                                     }
-                                    Log.i("audio", ((new Float(sum/SamplingFrequency/options.length)).toString()));
+                                    Log.i("audio", ((new Float(sum / SamplingFrequency / options.length)).toString()));
                                     len = 0;
                                     sum = 0;
                                 }
@@ -127,7 +117,7 @@ public class NoiseFixationActivity extends AppCompatActivity {
                 thread.start();
             }
         });
-        ((Button)findViewById(R.id.stop_button)).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.stop_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 thread.interrupt();

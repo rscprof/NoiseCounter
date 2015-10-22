@@ -1,4 +1,4 @@
-package ru.rsc_team.noisecounter.model;
+package ru.rsc_team.noiseCounter.model;
 
 import java.io.Serializable;
 

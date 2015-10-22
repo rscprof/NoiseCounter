@@ -1,4 +1,4 @@
-package ru.rsc_team.noisecounter.model;
+package ru.rsc_team.noiseCounter.model;
 
 import android.content.res.Resources;
 
@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 
-import ru.rsc_team.noisecounter.R;
+import ru.rsc_team.noiseCounter.R;
 
 /**
  * Created by rscprof on 22.10.15.

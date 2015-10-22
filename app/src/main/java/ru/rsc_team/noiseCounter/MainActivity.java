@@ -1,18 +1,9 @@
-package ru.rsc_team.noisecounter;
+package ru.rsc_team.noiseCounter;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.VoiceInteractor;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.DataSetObserver;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,22 +11,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-
-import ru.rsc_team.noisecounter.model.Group;
-import ru.rsc_team.noisecounter.model.Model;
-import ru.rsc_team.noisecounter.model.ModelChangeListener;
-import ru.rsc_team.noisecounter.model.Options;
+import ru.rsc_team.noiseCounter.model.Group;
+import ru.rsc_team.noiseCounter.model.Model;
+import ru.rsc_team.noiseCounter.model.ModelChangeListener;
+import ru.rsc_team.noiseCounter.model.Options;
 
 //TODO onPause
 public class MainActivity extends Activity {

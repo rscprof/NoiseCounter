@@ -1,20 +1,16 @@
-package ru.rsc_team.noisecounter;
+package ru.rsc_team.noiseCounter;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
 
-import ru.rsc_team.noisecounter.model.Options;
+import ru.rsc_team.noiseCounter.model.Options;
 
 public class OptionsActivity extends AppCompatActivity {
 
@@ -37,7 +33,7 @@ public class OptionsActivity extends AppCompatActivity {
         editTextLengthGate = (EditText) findViewById(R.id.editTextLengthGate);
         editTextLengthGate.setText(String.format("%f", options.gate));
 
-        ((Button)findViewById(R.id.buttonOptionsCancel)).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonOptionsCancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setResult(RESULT_CANCELED);
@@ -45,7 +41,7 @@ public class OptionsActivity extends AppCompatActivity {
             }
         });
 
-        ((Button) findViewById(R.id.buttonOptionsSave)).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonOptionsSave).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
