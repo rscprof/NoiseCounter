@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="option_default_border">1000</integer>
+    <item name="option_default_gate" format="float" type="string">50.0</item>
+    <item name="option_default_length" format="float" type="string">5.0</item>
+</resources>

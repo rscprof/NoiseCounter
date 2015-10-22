@@ -1,6 +1,8 @@
 package ru.rsc_team.noisecounter;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.VoiceInteractor;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,29 +25,43 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 import ru.rsc_team.noisecounter.model.Group;
 import ru.rsc_team.noisecounter.model.Model;
 import ru.rsc_team.noisecounter.model.ModelChangeListener;
+import ru.rsc_team.noisecounter.model.Options;
 
 //TODO onPause
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private static final int GET_GROUP_NAME = 0;
     private static final int GET_GROUP = 1;
+    private static final int SET_OPTIONS=2;
     private Model model;
     private static final String PREF_COUNT_GROUPS="COUNT_GROUPS";
     private static final String PREF_GROUP_NAME_PREF="GROUP_NAME";
     private static final String PREF_GROUP_COUNT_PREF="GROUP_COUNT";
+    private static final String PREF_OPTIONS="OPTIONS";
+    private Options options;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_group);
-
         model=Model.getInstance();
         model.clear();
         SharedPreferences preferences=getPreferences(0);
-        int countGroups=preferences.getInt(PREF_COUNT_GROUPS,0);
+        int countGroups=preferences.getInt(PREF_COUNT_GROUPS, 0);
+        String stringOptions = preferences.getString(PREF_OPTIONS,"");
+        if (!(stringOptions.equals(""))) options = new Options(stringOptions);
+        else options=new Options(getResources());
         //countGroups=0;
         for (int i=0;i<countGroups;i++) {
             String name=preferences.getString(PREF_GROUP_NAME_PREF+Integer.valueOf(i).toString(),"");
@@ -71,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(MainActivity.this,NoiseFixationActivity.class);
                 intent.putExtra(NoiseFixationActivity.GroupValue, model.getGroup(position));
+                intent.putExtra(NoiseFixationActivity.OptionsValue,options);
                 startActivityForResult(intent, GET_GROUP);
             }
         });
@@ -123,6 +140,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        //TODO optimisation
         if ((requestCode==GET_GROUP_NAME)&&(resultCode==RESULT_OK)) {
             //TODO forbid equal name
             model.createGroup(data.getStringExtra(CreateDialogGroupActivity.GroupNameValue));
@@ -131,6 +150,9 @@ public class MainActivity extends AppCompatActivity {
             Group group=(Group)data.getSerializableExtra(NoiseFixationActivity.GroupValue);
             int position=data.getIntExtra(NoiseFixationActivity.PositionValue,0);
             model.setGroup(position,group);
+        }
+        if ((requestCode==SET_OPTIONS)&&(resultCode==RESULT_OK)) {
+            options=(Options)data.getSerializableExtra(OptionsActivity.OPTIONS);
         }
 
     }
@@ -152,6 +174,10 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+            Intent intent = new Intent (MainActivity.this,OptionsActivity.class);
+            intent.putExtra(OptionsActivity.OPTIONS,options);
+            startActivityForResult(intent, SET_OPTIONS);
             return true;
         }
 
@@ -169,6 +195,9 @@ public class MainActivity extends AppCompatActivity {
             editor.putString(PREF_GROUP_NAME_PREF+Integer.valueOf(i).toString(),model.getGroup(i).getName());
             editor.putInt(PREF_GROUP_COUNT_PREF+Integer.valueOf(i).toString(),model.getGroup(i).getCount());
         }
+
+        editor.putString(PREF_OPTIONS,options.getJson());
+
         editor.commit();
     }
 }

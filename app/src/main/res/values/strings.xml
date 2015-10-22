@@ -10,4 +10,13 @@
     <string name="title_activity_noise_fixation">Noise Fixation</string>
     <string name="noise_fixation_start_button_title">Start</string>
     <string name="noise_fixation_stop_button_title">Stop</string>
+    <string name="title_activity_options">OptionsActivity</string>
+    <string name="option_length">Interval\'s length</string>
+    <string name="option_border">Border of background noise</string>
+    <string name="option_gate">Border of length overflow (%)</string>
+    <string name="button_options_save">Save</string>
+    <string name="button_options_cancel" >Cancel</string>
+    <string name="options_bad_border_noise">Noise\'s border is incorrect</string>
+    <string name="options_bad_length">Length is incorrect</string>
+    <string name="options_bad_gate">Gate is incorrect</string>
 </resources>

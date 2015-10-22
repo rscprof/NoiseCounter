@@ -24,16 +24,20 @@ import java.util.Locale;
 
 import ru.rsc_team.noisecounter.model.Group;
 import ru.rsc_team.noisecounter.model.GroupTickListener;
+import ru.rsc_team.noisecounter.model.Options;
 
 //TODO onPause
 public class NoiseFixationActivity extends AppCompatActivity {
 
     final static public String GroupValue="GROUP";
     final static public String PositionValue="POSITION";
+    final public static String OptionsValue="OPTIONS";
+    private int SamplingFrequency;
     TextView textViewCounter;
     private Thread thread;
     private TextToSpeech tts;
     Group group;
+    Options options;
     private int position;
     private int idTickListener;
 
@@ -46,10 +50,11 @@ public class NoiseFixationActivity extends AppCompatActivity {
 
 
 
-    //TODO settings
+
     //TODO test of correctness all operations
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SamplingFrequency=getResources().getInteger(R.integer.sampling_frequency);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.noise_fixation);
         tts=new TextToSpeech(this, new TextToSpeech.OnInitListener() {
@@ -60,6 +65,7 @@ public class NoiseFixationActivity extends AppCompatActivity {
         });
 
         group= (Group) this.getIntent().getSerializableExtra(GroupValue);
+        options = (Options)this.getIntent().getSerializableExtra(OptionsValue);
         position=this.getIntent().getIntExtra(PositionValue,0);
         idTickListener=group.addTickListener(new GroupTickListener() {
             @Override
@@ -79,9 +85,9 @@ public class NoiseFixationActivity extends AppCompatActivity {
                 thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        //TODO options
-                        int bufferSize = AudioRecord.getMinBufferSize(44100, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
-                        AudioRecord recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, 44100, AudioFormat.CHANNEL_IN_MONO,
+
+                        int bufferSize = AudioRecord.getMinBufferSize(SamplingFrequency, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
+                        AudioRecord recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, SamplingFrequency, AudioFormat.CHANNEL_IN_MONO,
                                 AudioFormat.ENCODING_PCM_16BIT, bufferSize);
                         bufferSize /= Short.SIZE;
                         short[] b = new short[bufferSize];
@@ -91,11 +97,14 @@ public class NoiseFixationActivity extends AppCompatActivity {
                         while (!Thread.interrupted()) {
                             int count = recorder.read(b, 0, bufferSize);
                             for (int i = 0; i < count; i++) {
-                                if (b[i]>200) sum++;
+                                if (b[i]>options.border) sum++;
                                 //sum += (float) b[i];
                                 len++;
-                                if (len == 32000 * 5) {
-                                    if (sum > 20000) {
+                                if (len == SamplingFrequency * options.length) {
+
+
+
+                                    if (sum > SamplingFrequency*options.length*options.gate/100) {
                                         //TODO send message
                                         NoiseFixationActivity.this.runOnUiThread(new Runnable() {
                                             @Override
@@ -104,7 +113,7 @@ public class NoiseFixationActivity extends AppCompatActivity {
                                             }
                                         });
                                     }
-                     //                  Log.i("audio", ((new Long(sum)).toString()));
+                                    Log.i("audio", ((new Float(sum/SamplingFrequency/options.length)).toString()));
                                     len = 0;
                                     sum = 0;
                                 }
