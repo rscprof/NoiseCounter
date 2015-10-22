@@ -83,10 +83,11 @@ public class MainActivity extends Activity {
             notifyDataSetChanged();
         }
 
-        private Model model;
+        private final Model model;
 
         public GroupListAdapter(Model model) {
             this.model = model;
+            model.addModelChangeListener(this);
         }
 
         @Override
@@ -181,6 +182,6 @@ public class MainActivity extends Activity {
 
         editor.putString(PREF_OPTIONS,options.getJson());
 
-        editor.commit();
+        editor.apply();
     }
 }

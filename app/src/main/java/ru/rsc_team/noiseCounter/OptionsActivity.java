@@ -15,7 +15,7 @@ import ru.rsc_team.noiseCounter.model.Options;
 public class OptionsActivity extends AppCompatActivity {
 
     public static final String OPTIONS = "OPTIONS";
-    Options options;
+    private Options options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +90,7 @@ public class OptionsActivity extends AppCompatActivity {
                     setResult(RESULT_OK, intent);
                     finish();
 
-                } catch (ParseException e) {
+                } catch (ParseException ignored) {
 
                 }
             }

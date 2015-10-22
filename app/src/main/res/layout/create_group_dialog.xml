@@ -17,13 +17,13 @@
         android:layout_height="wrap_content"
         android:text="@string/dialog_create_group_message"
         android:id="@+id/create_dialog_group_message"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:labelFor="@+id/created_group_name"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/created_group_name"
-        android:editable="true"
         android:enabled="true"
         android:inputType="text" />
 
@@ -32,19 +32,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dialog_create_group_ok"
-            android:id="@+id/create_dialog_group_ok" />
+        android:gravity="center_horizontal"
+        style="@android:style/ButtonBar"
+        >
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dialog_create_group_cancel"
-            android:id="@+id/create_dialog_group_cancel" />
+            android:id="@+id/create_dialog_group_cancel"
+            style="@android:style/ButtonBar"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_create_group_ok"
+            android:id="@+id/create_dialog_group_ok"
+            android:layout_weight="1"
+            style="@android:style/ButtonBar" />
+
     </LinearLayout>
 
 </LinearLayout>

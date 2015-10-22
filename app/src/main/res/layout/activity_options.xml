@@ -11,15 +11,15 @@
         android:layout_height="wrap_content"
         android:text="@string/option_length"
         android:id="@+id/textView"
-        android:breakStrategy="simple"
-        android:layout_row="0"
         android:layout_gravity="top"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-
-        android:layout_toLeftOf="@+id/editTextLength" />
+        android:labelFor="@+id/editTextLength"
+        android:layout_alignTop="@+id/editTextLength"
+        android:layout_alignBottom="@+id/editTextLength"
+        android:singleLine="false"
+        android:layout_toStartOf="@+id/editTextLength" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -27,25 +27,20 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editTextLength"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:numeric="decimal" />
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/option_border"
         android:id="@+id/textView2"
-        android:layout_column="0"
-        android:breakStrategy="simple"
-        android:layout_row="1"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="false"
         android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
         android:layout_alignTop="@+id/editTextBorderNoise"
-        android:layout_toLeftOf="@+id/editTextBorderNoise" />
+        android:layout_toStartOf="@+id/editTextBorderNoise"
+        android:labelFor="@+id/editTextBorderNoise"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -53,29 +48,24 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editTextBorderNoise"
-        android:layout_column="1"
         android:layout_gravity="bottom"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="false"
-        android:layout_alignLeft="@+id/editTextLength"
-        android:layout_alignRight="@+id/editTextLength"
+        android:layout_alignStart="@+id/editTextLength"
+        android:layout_alignEnd="@+id/editTextLength"
         android:layout_below="@+id/editTextLength"
-        android:numeric="integer" />
+         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/option_gate"
         android:id="@+id/textView3"
-        android:layout_column="0"
-        android:breakStrategy="high_quality"
         android:clickable="false"
-        android:layout_row="2"
-        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
         android:layout_alignParentTop="false"
         android:layout_below="@+id/editTextBorderNoise"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_toLeftOf="@+id/editTextLengthGate" />
+        android:layout_alignStart="@+id/textView2"
+        android:layout_toStartOf="@+id/editTextLengthGate"
+        android:labelFor="@+id/editTextLengthGate"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -83,39 +73,36 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editTextLengthGate"
-        android:layout_column="1"
         android:layout_gravity="bottom"
-        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
         android:layout_alignParentTop="false"
         android:layout_below="@+id/editTextBorderNoise"
-        android:layout_alignLeft="@+id/editTextBorderNoise"
-        android:layout_alignRight="@+id/editTextBorderNoise"
-        android:numeric="decimal" />
+        android:layout_alignStart="@+id/editTextBorderNoise"
+        android:layout_alignEnd="@+id/editTextBorderNoise"
+        />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:layout_columnSpan="2"
-        android:layout_row="3"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="false"
         android:gravity="center_horizontal"
         android:layout_below="@+id/editTextLengthGate">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_options_save"
-            android:id="@+id/buttonOptionsSave"
-            android:layout_column="0" />
+            android:text="@string/button_options_cancel"
+            android:id="@+id/buttonOptionsCancel"
+            style="android:attr/buttonBarButtonStyle"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_options_cancel"
-            android:id="@+id/buttonOptionsCancel"
-            android:layout_column="1" />
+            android:text="@string/button_options_save"
+            android:id="@+id/buttonOptionsSave"
+            style="android:attr/buttonBarButtonStyle"
+            />
+
     </LinearLayout>
 
 </RelativeLayout>

@@ -4,15 +4,18 @@ import java.util.ArrayList;
 
 /**
  * Created by rscprof on 14.10.15.
+ * ConcreteGroup is an implementation of interface Group
  */
 public class ConcreteGroup implements  Group {
-    private static final long serialVersionUID = 0L;
+    // --Commented out by Inspection (22.10.15 17:24):private static final long serialVersionUID = 0L;
 
-    public ConcreteGroup(String name) {
-        init(name, 0);
-    }
+// --Commented out by Inspection START (22.10.15 17:24):
+//    public ConcreteGroup(String name) {
+//        init(name, 0);
+//    }
+// --Commented out by Inspection STOP (22.10.15 17:24)
 
-    private ArrayList<GroupTickListener> groupTickListeners = new ArrayList<>();
+    private final ArrayList<GroupTickListener> groupTickListeners = new ArrayList<>();
 
   /*  private void writeObject(java.io.ObjectOutputStream out)
             throws IOException {

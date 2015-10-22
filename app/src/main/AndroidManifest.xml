@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.rsc_team.noisecounter" >
+    package="ru.rsc_team.noiseCounter" >
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
+        android:fullBackupContent="@xml/mybackupscheme"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="ru.rsc_team.noiseCounter.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
@@ -21,17 +22,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CreateDialogGroupActivity"
+            android:name="ru.rsc_team.noiseCounter.CreateDialogGroupActivity"
             android:label="@string/title_activity_create_dialog_group"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".NoiseFixationActivity"
+            android:name="ru.rsc_team.noiseCounter.NoiseFixationActivity"
             android:label="@string/title_activity_noise_fixation"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".OptionsActivity"
+            android:name="ru.rsc_team.noiseCounter.OptionsActivity"
             android:label="@string/title_activity_options"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>

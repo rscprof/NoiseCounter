@@ -6,11 +6,11 @@
     <string name="dialog_create_group_message">Set group\'s name</string>
     <string name="dialog_create_group_ok">Register</string>
     <string name="dialog_create_group_cancel">Cancel</string>
-    <string name="title_activity_create_dialog_group">CreateDialogGroupActivity</string>
+    <string name="title_activity_create_dialog_group">Create Group</string>
     <string name="title_activity_noise_fixation">Noise Fixation</string>
     <string name="noise_fixation_start_button_title">Start</string>
     <string name="noise_fixation_stop_button_title">Stop</string>
-    <string name="title_activity_options">OptionsActivity</string>
+    <string name="title_activity_options">Options</string>
     <string name="option_length">Interval\'s length</string>
     <string name="option_border">Border of background noise</string>
     <string name="option_gate">Border of length overflow (%)</string>

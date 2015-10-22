@@ -1,4 +1,4 @@
-package ru.rsc_team.noisecounter;
+package ru.rsc_team.noiseCounter;
 
 import org.junit.Test;
 

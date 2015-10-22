@@ -4,27 +4,30 @@ import java.io.Serializable;
 
 /**
  * Created by rscprof on 14.10.15.
+ * Group is a class, that encapsulated counter, and provide listeners for events
  */
 //TODO delete listener's
 public interface Group extends Serializable {
 
     //Tick counter
-    public void tick();
+    void tick();
 
     //Clear counter
-    public void clear();
+    @SuppressWarnings("unused")
+    void clear();
 
     //Get count
-    public int getCount();
+    int getCount();
 
     //set listener for tick
-    public int addTickListener(GroupTickListener listener);
-    public void dropTickListener (int position);
+    int addTickListener(GroupTickListener listener);
+    void dropTickListener(int position);
 
     //set listener for border
-    public void addBorderListener(GroupBorderListener listener);
+    @SuppressWarnings({"EmptyMethod", "unused"})
+    void addBorderListener(GroupBorderListener listener);
 
     //get name
-    public String getName();
+    String getName();
 
 }

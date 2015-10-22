@@ -17,4 +17,7 @@
     <string name="options_bad_border_noise">Неверная граница уровня шума</string>
     <string name="options_bad_length">Некорректная длина</string>
     <string name="options_bad_gate">Граница процента длины шума некорректна</string>
+    <string name="title_activity_create_dialog_group">Регистрация группы</string>
+    <string name="title_activity_noise_fixation">Фиксация шума</string>
+    <string name="title_activity_options">Настройки</string>
 </resources>

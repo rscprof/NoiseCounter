@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class Model// implements Iterable<Group>
 {
 
-    private static Model ourInstance = new Model();
-    private ArrayList<Group> groupList=new ArrayList<>();
+    private static final Model ourInstance = new Model();
+    private final ArrayList<Group> groupList=new ArrayList<>();
 
     public static Model getInstance() {
         return ourInstance;
@@ -47,8 +47,8 @@ public class Model// implements Iterable<Group>
         return null;
     }*/
 
-    public Group createGroup(String name) {
-        return createGroup(name,0);
+    public void createGroup(String name) {
+         createGroup(name,0);
 
     }
 
@@ -65,8 +65,9 @@ public class Model// implements Iterable<Group>
     }
 
 
-    private ArrayList<ModelChangeListener> modelChangeListeners = new ArrayList<>();
+    private final ArrayList<ModelChangeListener> modelChangeListeners = new ArrayList<>();
 
+    @SuppressWarnings("unused")
     public void addModelChangeListener(ModelChangeListener modelChangeListener) {
         modelChangeListeners.add(modelChangeListener);
     }
@@ -77,11 +78,10 @@ public class Model// implements Iterable<Group>
         }
     }
 
-    public Group createGroup(String name, int count) {
+    public void createGroup(String name, int count) {
         ConcreteGroup group=new ConcreteGroup(name,count);
         groupList.add(group);
         changeSignal();
-        return group;
     }
 
     public void clear() {

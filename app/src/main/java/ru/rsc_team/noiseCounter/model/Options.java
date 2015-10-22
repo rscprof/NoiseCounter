@@ -15,7 +15,6 @@ import ru.rsc_team.noiseCounter.R;
  * This class encapsulated all options (Class's goal is saving and loading without any changes in MainActivity class)
  */
 public class Options implements Serializable{
-    private static final long serialVersionUID=0L;
     private static final String LENGTH_JSON_KEY="length";
     private static final String GATE_JSON_KEY="gate";
     private static final String BORDER_JSON_KEY="border";

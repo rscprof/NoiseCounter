@@ -24,13 +24,15 @@ public class NoiseFixationActivity extends AppCompatActivity {
     final static public String PositionValue="POSITION";
     final public static String OptionsValue="OPTIONS";
     private int SamplingFrequency;
-    TextView textViewCounter;
+    private TextView textViewCounter;
     private Thread thread;
     private TextToSpeech tts;
-    Group group;
-    Options options;
+    private Group group;
+    private Options options;
     private int position;
     private int idTickListener;
+   // private final String PREF_ID="NoiseFixation";
+ //   private int number=0;
 
     @Override
     public void finish() {
@@ -57,22 +59,29 @@ public class NoiseFixationActivity extends AppCompatActivity {
 
         group= (Group) this.getIntent().getSerializableExtra(GroupValue);
         options = (Options)this.getIntent().getSerializableExtra(OptionsValue);
-        position=this.getIntent().getIntExtra(PositionValue,0);
+        position=this.getIntent().getIntExtra(PositionValue, 0);
         idTickListener=group.addTickListener(new GroupTickListener() {
             @Override
             public void tick(Group group) {
-                textViewCounter.setText((new Integer(group.getCount())).toString());
-                tts.speak((new Integer(group.getCount())).toString(), TextToSpeech.QUEUE_ADD,
+                textViewCounter.setText((String.format("%d", group.getCount())));
+                //     number++;
+                //     tts.speak((String.valueOf(group.getCount())),TextToSpeech.QUEUE_ADD,null,PREF_ID+number);
+                //noinspection deprecation
+                tts.speak((String.valueOf(group.getCount())), TextToSpeech.QUEUE_ADD,
                         null);
             }
         });
         ((TextView)findViewById(R.id.name_group)).setText(group.getName());
         textViewCounter=(TextView)findViewById(R.id.counter);
-        textViewCounter.setText((new Integer(group.getCount())).toString());
+        textViewCounter.setText(String.format("%d", group.getCount()));
+        findViewById(R.id.start_button).setEnabled(true);
+        findViewById(R.id.stop_button).setEnabled(false);
         findViewById(R.id.start_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO only one thread
+                findViewById(R.id.stop_button).setEnabled(true);
+                findViewById(R.id.start_button).setEnabled(false);
                 thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -103,7 +112,7 @@ public class NoiseFixationActivity extends AppCompatActivity {
                                             }
                                         });
                                     }
-                                    Log.i("audio", ((new Float(sum / SamplingFrequency / options.length)).toString()));
+                                    Log.i("audio", ((String.valueOf(sum / SamplingFrequency / options.length))));
                                     len = 0;
                                     sum = 0;
                                 }
@@ -117,9 +126,12 @@ public class NoiseFixationActivity extends AppCompatActivity {
                 thread.start();
             }
         });
+        //TODO optimize findViewById
         findViewById(R.id.stop_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                findViewById(R.id.start_button).setEnabled(true);
+                findViewById(R.id.stop_button).setEnabled(false);
                 thread.interrupt();
             }
         });
