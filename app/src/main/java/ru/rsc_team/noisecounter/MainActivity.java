@@ -87,6 +87,7 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=new Intent(MainActivity.this,NoiseFixationActivity.class);
                 intent.putExtra(NoiseFixationActivity.GroupValue, model.getGroup(position));
+                intent.putExtra(NoiseFixationActivity.PositionValue,position);
                 intent.putExtra(NoiseFixationActivity.OptionsValue,options);
                 startActivityForResult(intent, GET_GROUP);
             }
